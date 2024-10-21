@@ -1,31 +1,35 @@
 from django.contrib import admin
 
-from .models import Categories, Products, SubCategories
+from goods.models import Category, SubCategory, Product
 
-
-@admin.register(Categories)
+@admin.register(Category)
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
     list_display = ['name',]
 
 
-@admin.register(SubCategories)
+@admin.register(SubCategory)
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
     list_display = ['name',]
+    fields = [
+        'category',
+        'name',
+        'slug',
+        'image',
+    ]
 
 
-@admin.register(Products)
+@admin.register(Product)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ['name', 'price',]
     list_editable = ['price',]
     search_fields = ['name']
     fields = [
+        'sub_category',
         'name',
-        'category',
         'slug',
-        ('small_img', 'medium_img', 'large_img')
-        ('price', 'discount'),
-        'amount',
+        ('small_img', 'medium_img', 'large_img'),
+        'price',
     ]

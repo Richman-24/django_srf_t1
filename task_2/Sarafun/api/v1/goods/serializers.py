@@ -4,7 +4,6 @@ from goods.models import Category, SubCategory, Product
 
 
 class SubCategorySerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Category."""
 
     class Meta:
         model = SubCategory
@@ -12,7 +11,7 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Category."""
+
     subcategories = SubCategorySerializer(many=True, read_only=True)
 
     class Meta:
@@ -20,4 +19,16 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('name', 'slug', 'image', 'subcategories')
 
 
-class ProductSerializer(serializers.ModelSerializer): ...
+class ProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'slug',
+            'small_img',
+            'medium_img',
+            'large_img',
+            'price',
+            'sub_category'
+        )
