@@ -19,3 +19,7 @@ class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
     pagination_class = PageNumberPagination
 
+class ProductDetailView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = 'slug'

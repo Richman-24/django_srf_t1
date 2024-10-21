@@ -10,6 +10,7 @@ class Category(models.Model):
         db_table = 'category'
         verbose_name='категорию'
         verbose_name_plural='категории'
+        ordering = ('id',)
 
     def __str__(self):
         return self.name
@@ -26,6 +27,7 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
         verbose_name='подкатегория'
         verbose_name_plural='подкатегории'
+        ordering = ('id',)
 
     def __str__(self):
         return f"{self.category.name}: {self.name}"
